@@ -1,6 +1,5 @@
-
-
 import { expect } from "chai";
+import { travelersData, tripsData, destinationsData } from "../src/sample-data";
 import Trip from "../src/Trip";
 
 describe("Trip", () => {
@@ -10,20 +9,14 @@ describe("Trip", () => {
   let trip4;
 
   beforeEach(() => {
-    trip1 = new Trip(10, 1, 4, 2, "2022/10/10", 5, "approved");
-    trip2 = new Trip(30, 1, 8, 3, "2021/12/01", 4, "pending");
-    trip3 = new Trip(20, 1, 6, 2, "2022/05/04", 7, "approved");
-    trip4 = new Trip(20, 2, 6, 2, "2022/05/04", 7, "approved");
-  });
-  it("Should be a function", () => {
-    expect(Trip).to.be.a("function");
+    trip1 = (tripsData[0])
+    trip2 = (tripsData[1])
+    trip3 = (tripsData[2])
+    trip4 = (tripsData[3])
   });
 
-  it("should be an instance of Trip", () => {
-    expect(trip1).to.be.instanceOf(Trip);
-    expect(trip2).to.be.instanceOf(Trip);
-    expect(trip3).to.be.instanceOf(Trip);
-    expect(trip4).to.be.instanceOf(Trip);
+  it("Should be a function", () => {
+    expect(Trip).to.be.a("function");
   });
 
   it("should be able to determine a trip id", () => {
