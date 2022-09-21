@@ -84,20 +84,24 @@ describe("Session", () => {
     expect(session.getUsersDestinations(1)).to.deep.equal([destination1, destination3, destination2])
   });
 
-  it('Should be able to find a users lodging costs for all trips', () => {
-    expect(session.getUsersLodgingCosts(1)).to.equal(835)
+  it('Should be able to find the year', () => {
+    expect(session.getYear(1)).to.equal('2022')
+  });
+
+  it('Should be able to find a users lodging costs for all trips this year', () => {
+    expect(session.getUsersLodgingCosts(1)).to.equal(335)
     expect(session.getUsersLodgingCosts(2)).to.equal(350)
   });
 
   it('Should be able to find a users flight costs for all trips', () => {
-    expect(session.getUsersFlightsCosts(1)).to.equal(6260)
+    expect(session.getUsersFlightsCosts(1)).to.equal(4260)
     expect(session.getUsersFlightsCosts(2)).to.equal(3560)
     expect(session.getUsersFlightsCosts(3)).to.equal(0)
   });
 
   it('Should be able to find a users total spent on trips', () => {
-    expect(session.getUsersTotalSpent(1)).to.equal('7804.50')
-    expect(session.getUsersTotalSpent(2)).to.equal('4301.01')
+    expect(session.getUsersTotalSpent(1)).to.equal('5054.50')
+    expect(session.getUsersTotalSpent(2)).to.equal('4301.00')
   });
 
 });

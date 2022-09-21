@@ -9,6 +9,8 @@ import Destination from './Destination';
 import Session from './Session';
 
 // QUERYSELECTORS
+let userWelcome = document.querySelector(".welcome-traveler");
+let yearlySpent = document.querySelector(".traveler-yearly-spent");
 
 // GLOBAL VARIABLES
 let travelersData;
@@ -17,15 +19,12 @@ let destinationsData;
 let session;
 let traveler;
 
-
 // EVENT LISTENERS
 window.onload = (event) => {
     getData();
-    // showLoginView();
   };
 
-// FUNCTION
-
+// FUNCTIONS
 const getData = () => {
     Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
     .then((value) => {
@@ -33,15 +32,12 @@ const getData = () => {
         tripsData = value[1].trips;
         destinationsData = value[2].destinations;
         session = new Session(travelersData, tripsData, destinationsData);
-        traveler = new Traveler(travelersData[1])
-        console.log(session.getUsersTrips(traveler.id))
-        findName()
+        traveler = new Traveler(session.travelersData[0]);
+        updateNav();
     });
   }
-const getRandomUser = () => {
-    return Math.floor(Math.random() * 49) + 1
-}
-
-const findName = () => {
-    console.log(traveler.getTravelerType(travelersData))
-}
+  
+  const updateNav = () => {
+    userWelcome.innerHTML = `Welcome ${traveler.getName()}`
+    yearlySpent.innerHTML =  `This years total spending: $${session.getUsersTotalSpent(traveler.id)}`
+  }
