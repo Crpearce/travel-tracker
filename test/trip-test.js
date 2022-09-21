@@ -1,3 +1,5 @@
+
+
 import { expect } from "chai";
 import Trip from "../src/Trip";
 
@@ -13,7 +15,6 @@ describe("Trip", () => {
     trip3 = new Trip(20, 1, 6, 2, "2022/05/04", 7, "approved");
     trip4 = new Trip(20, 2, 6, 2, "2022/05/04", 7, "approved");
   });
-  
   it("Should be a function", () => {
     expect(Trip).to.be.a("function");
   });
