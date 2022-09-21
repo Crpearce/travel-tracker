@@ -1,11 +1,37 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
-import './css/styles.css';
-
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
+
+import './css/styles.css';
+import { fetchData } from "./apiCalls";
+import Traveler from './Traveler';
+import Trip from './Trip';
+import Destination from './Destination';
+import Session from './Session';
+
+// QUERYSELECTORS
+
+// GLOBAL VARIABLES
+let travelersData;
+let tripsData;
+let destinationsData;
+let session;
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// EVENT LISTENERS
+window.onload = (event) => {
+    getData();
+    // showLoginView();
+  };
+
+// FUNCTION
+
+const getData = () => {
+    Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
+    .then((value) => {
+        travelersData = value[0].travelers;
+        tripsData = value[1].trips;
+        destinationsData = value[2].destinations;
+        session = new Session(travelersData, tripsData, destinationsData);
+        console.log(session)
+    });
+  }
