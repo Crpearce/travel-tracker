@@ -93,13 +93,13 @@ describe("Session", () => {
     expect(session.getUsersLodgingCosts(2)).to.equal(350)
   });
 
-  it('Should be able to find a users flight costs for all trips', () => {
+  it('Should be able to find a users flight costs for all trips this year', () => {
     expect(session.getUsersFlightsCosts(1)).to.equal(4260)
     expect(session.getUsersFlightsCosts(2)).to.equal(3560)
     expect(session.getUsersFlightsCosts(3)).to.equal(0)
   });
 
-  it('Should be able to find a users total spent on trips', () => {
+  it('Should be able to find a users total spent on trips this year', () => {
     expect(session.getUsersTotalSpent(1)).to.equal('5054.50')
     expect(session.getUsersTotalSpent(2)).to.equal('4301.00')
   });
