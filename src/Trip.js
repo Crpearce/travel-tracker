@@ -1,12 +1,12 @@
 class Trip {
-    constructor(id, userID, destinationID, travelers, date, duration, status) {
-        this.id = id;
-        this.userID = userID;
-        this.destinationID = destinationID;
-        this.travelers = travelers;
-        this.date = date;
-        this.duration = duration;
-        this.status = status;
+    constructor(tripsData) {
+        this.id = tripsData.id;
+        this.userID = tripsData.userID;
+        this.destinationID = tripsData.destinationID;
+        this.travelers = tripsData.travelers;
+        this.date = tripsData.date;
+        this.duration = tripsData.duration;
+        this.status = tripsData.status;
         this.suggestActivities = []
     }
 }
