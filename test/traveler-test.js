@@ -9,9 +9,9 @@ describe("Traveler", () => {
   let travelersData;
 
   beforeEach(() => {
-    traveler1 = new Traveler(1);
-    traveler2 = new Traveler(2);
-    traveler3 = new Traveler(3);
+    traveler1 = new Traveler({'id': 1, 'name': 'Colby Pearce', 'travelerType': 'relaxer'});
+    traveler2 = new Traveler({'id': 2, 'name': 'Natalie Pearce','travelerType': 'foodie'});
+    traveler3 = new Traveler({'id': 3, 'name': 'Crosby Pearce', 'travelerType': 'thrill-seeker'});
     travelersData = [
       {'id': 1, 'name': 'Colby Pearce', 'travelerType': 'relaxer'},
       {'id': 2, 'name': 'Natalie Pearce','travelerType': 'foodie'},
@@ -35,15 +35,11 @@ describe("Traveler", () => {
   });
 
   it("should be able to find a travelers name by id number", () => {
-    traveler1.getName(travelersData)
-    traveler2.getName(travelersData)
     expect(traveler1.name).to.equal('Colby Pearce');
     expect(traveler2.name).to.equal('Natalie Pearce');
   });
 
   it("should be able to determine a Traveler type", () => {
-    traveler1.getTravelerType(travelersData)
-    traveler2.getTravelerType(travelersData)
     expect(traveler1.travelerType).to.equal('relaxer');
     expect(traveler2.travelerType).to.equal('foodie');
   });

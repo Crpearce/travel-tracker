@@ -23,13 +23,13 @@ describe("Session", () => {
   let session;
 
   beforeEach(() => {
-    trip1 = new Trip(10, 1, 4, 2, "2022/10/10", 5, "approved");
-    trip2 = new Trip(30, 1, 8, 3, "2021/12/01", 4, "pending");
-    trip3 = new Trip(20, 1, 6, 2, "2022/05/04", 7, "approved");
-    trip4 = new Trip(20, 2, 6, 2, "2022/05/04", 7, "approved");
-    traveler1 = new Traveler(1);
-    traveler2 = new Traveler(2);
-    traveler3 = new Traveler(3);
+    trip1 = new Trip(10, 1, 4, 1, "2022/10/10", 3, "approved");
+    trip2 = new Trip(30, 1, 8, 1, "2021/12/01", 4, "pending");
+    trip3 = new Trip(20, 1, 6, 2, "2022/05/04", 2, "approved");
+    trip4 = new Trip(20, 2, 6, 2, "2022/05/04", 5, "approved");
+    traveler1 = new Traveler({'id': 1, 'name': 'Colby Pearce', 'travelerType': 'relaxer'});
+    traveler2 = new Traveler({'id': 2, 'name': 'Natalie Pearce','travelerType': 'foodie'});
+    traveler3 = new Traveler({'id': 3, 'name': 'Crosby Pearce', 'travelerType': 'thrill-seeker'});
     destination1 = new Destination(
       4,
       "Cartagena, Colombia",
@@ -75,4 +75,29 @@ describe("Session", () => {
   it('Should have destinations', () => {
     expect(session.destinationsData).to.deep.equal([destination1, destination2, destination3])
   });
+
+  it('Should be able to find all of a users trips', () => {
+    expect(session.getUsersTrips(1)).to.deep.equal([trip1, trip2, trip3])
+  });
+
+  it('Should be able to find all of a users destinations', () => {
+    expect(session.getUsersDestinations(1)).to.deep.equal([destination1, destination3, destination2])
+  });
+
+  it('Should be able to find a users lodging costs for all trips', () => {
+    expect(session.getUsersLodgingCosts(1)).to.equal(835)
+    expect(session.getUsersLodgingCosts(2)).to.equal(350)
+  });
+
+  it('Should be able to find a users flight costs for all trips', () => {
+    expect(session.getUsersFlightsCosts(1)).to.equal(6260)
+    expect(session.getUsersFlightsCosts(2)).to.equal(3560)
+    expect(session.getUsersFlightsCosts(3)).to.equal(0)
+  });
+
+  it('Should be able to find a users total spent on trips', () => {
+    expect(session.getUsersTotalSpent(1)).to.equal('7804.50')
+    expect(session.getUsersTotalSpent(2)).to.equal('4301.01')
+  });
+
 });

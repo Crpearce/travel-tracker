@@ -15,6 +15,7 @@ let travelersData;
 let tripsData;
 let destinationsData;
 let session;
+let traveler;
 
 
 // EVENT LISTENERS
@@ -32,6 +33,15 @@ const getData = () => {
         tripsData = value[1].trips;
         destinationsData = value[2].destinations;
         session = new Session(travelersData, tripsData, destinationsData);
-        console.log(session)
+        traveler = new Traveler(travelersData[1])
+        console.log(session.getUsersTrips(traveler.id))
+        findName()
     });
   }
+const getRandomUser = () => {
+    return Math.floor(Math.random() * 49) + 1
+}
+
+const findName = () => {
+    console.log(traveler.getTravelerType(travelersData))
+}
