@@ -1,5 +1,5 @@
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 
 import './css/styles.css';
 import { fetchData } from "./apiCalls";
@@ -11,6 +11,11 @@ import Session from './Session';
 // QUERYSELECTORS
 
 // GLOBAL VARIABLES
+let travelersData;
+let tripsData;
+let destinationsData;
+let session;
+
 
 // EVENT LISTENERS
 window.onload = (event) => {
