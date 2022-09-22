@@ -67,7 +67,24 @@ describe("Traveler", () => {
   });
 
   it('Should be able to find a users past trips', () => {
-    expect(traveler1.getPastTrips(tripsData, destinationsData)).to.equal()
-    // expect(session.getUsersTotalSpent(2)).to.equal('4301.00')
+    expect(traveler1.getPastTrips(tripsData, destinationsData)).to.deep.equal([
+      '</br> 2021/12/01:  Tokyo, Japan',
+      '</br> 2022/05/04:  Jakarta, Indonesia'
+    ])
+    expect(traveler2.getPastTrips(tripsData, destinationsData)).to.deep.equal([
+      '</br> 2022/05/04:  Jakarta, Indonesia',
+      '</br> 2021/12/10:  Cartagena, Colombia',
+      '</br> 2022/06/01:  Tokyo, Japan'
+    ])
+  });
+
+  it('Should be able to find a users upcoming trips', () => {
+    expect(traveler1.getUpcomingTrips(tripsData, destinationsData)).to.deep.equal([ '</br> 2022/10/10:  Cartagena, Colombia' ])
+    expect(traveler2.getUpcomingTrips(tripsData, destinationsData)).to.deep.equal('No upcoming trips')
+  });
+
+  it('Should be able to find a users pending trips', () => {
+    expect(traveler1.getPendingTrips(tripsData, destinationsData)).to.deep.equal(['</br> 2021/12/01:  Tokyo, Japan, Status : pending' ])
+    expect(traveler2.getPendingTrips(tripsData, destinationsData)).to.deep.equal('No pending trips')
   });
 });

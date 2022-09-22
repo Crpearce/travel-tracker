@@ -9,8 +9,7 @@ class Traveler {
 
   getTravelerType = () => this.travelerType;
 
-  getTravelerTrips = (tripsData) =>
-    tripsData.filter((trip) => trip.userID === this.id);
+  getTravelerTrips = (tripsData) => tripsData.filter((trip) => trip.userID === this.id);
 
   getTravelerDestinations = (tripsData, destinationsData) => {
     let allTrips = this.getTravelerTrips(tripsData);
@@ -39,13 +38,8 @@ class Traveler {
   getLodgingCosts = (tripsData, destinationsData) => {
     let allTrips = this.getTravelerTrips(tripsData);
     let currentYear = this.getYear(tripsData);
-    let thisYearsTrips = allTrips.filter((trip) =>
-      trip.date.split("/").includes(currentYear)
-    );
-    let allDestinations = this.getTravelerDestinations(
-      tripsData,
-      destinationsData
-    );
+    let thisYearsTrips = allTrips.filter((trip) => trip.date.split("/").includes(currentYear));
+    let allDestinations = this.getTravelerDestinations(tripsData,destinationsData);
     let tripsLodgingCost = thisYearsTrips.reduce((acc, trip) => {
       let getInfo = allDestinations.find((destination) => destination.id === trip.destinationID);
       let dollars = getInfo.estimatedLodgingCostPerDay * trip.duration;
@@ -61,9 +55,7 @@ class Traveler {
     let thisYearsTrips = allTrips.filter((trip) => trip.date.split("/").includes(currentYear));
     let allDestinations = this.getTravelerDestinations(tripsData, destinationsData);
     let tripsLodgingCost = thisYearsTrips.reduce((acc, trip) => {
-      let getInfo = allDestinations.find(
-        (destination) => destination.id === trip.destinationID
-      );
+      let getInfo = allDestinations.find(destination => destination.id === trip.destinationID);
       let dollars = getInfo.estimatedFlightCostPerPerson * trip.travelers * 2;
       acc += dollars;
       return acc;
@@ -83,15 +75,55 @@ class Traveler {
     let allDestinations = this.getTravelerDestinations(tripsData, destinationsData);
     let getDates = allTrips.reduce((acc, trip) => {
       allDestinations.forEach((destination) => {
-        if (
-          trip.date.split("/").join("") < currentDate.split("-").join("") && destination.id === trip.destinationID) {
-          acc.push(destination.destination);
+        if (trip.date.split("/").join("") < currentDate.split("-").join("") && destination.id === trip.destinationID) {
+          acc.push(`</br> ${trip.date}:  ${destination.destination}`);
         }
       });
       return acc;
     }, []);
+    if(getDates.length < 1) {
+      return `No past trips`
+    } else {
     return getDates;
+    }
   };
+
+  getUpcomingTrips = (tripsData, destinationsData) => {
+    let allTrips = this.getTravelerTrips(tripsData);
+    let currentDate = new Date().toJSON().slice(0, 10);
+    let allDestinations = this.getTravelerDestinations(tripsData, destinationsData);
+    let getDates = allTrips.reduce((acc, trip) => {
+      allDestinations.forEach((destination) => {
+        if (trip.date.split("/").join("") >= currentDate.split("-").join("") && destination.id === trip.destinationID) {
+          acc.push(`</br> ${trip.date}:  ${destination.destination}`);
+        }
+      });
+      return acc;
+    }, []);
+    if(getDates.length < 1) {
+      return `No upcoming trips`
+    } else {
+    return getDates;
+    }
+  }
+
+  getPendingTrips = (tripsData, destinationsData) => {
+    let allTrips = this.getTravelerTrips(tripsData);
+    let allDestinations = this.getTravelerDestinations(tripsData, destinationsData);
+    let getDates = allTrips.reduce((acc, trip) => {
+      allDestinations.forEach((destination) => {
+        if (trip.status === 'pending' && destination.id === trip.destinationID) {
+          acc.push(`</br> ${trip.date}:  ${destination.destination}, Status : ${trip.status}`);
+        }
+      });
+      return acc;
+    }, []);
+    if(getDates.length < 1) {
+      return `No pending trips`
+    } else {
+      return getDates;
+    }
+  }
 }
 
 export default Traveler;

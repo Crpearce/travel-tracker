@@ -74,7 +74,7 @@ const travelersData = [
       'travelers': 3,
       'date': '2022/06/01',
       'duration': 4,
-      'status': 'pending',
+      'status': 'approved',
       'suggestActivities': []
     },
     {
