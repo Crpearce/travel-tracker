@@ -1,6 +1,5 @@
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-
+import './images/nav.png'
 import './css/styles.css';
 import { fetchData } from "./apiCalls";
 import Traveler from './Traveler';
@@ -13,6 +12,7 @@ let yearlySpent = document.querySelector(".traveler-yearly-spent");
 let pastTrips = document.querySelector(".past-trips");
 let upcomingTrips = document.querySelector(".upcoming-trips");
 let pendingTrips = document.querySelector(".pending-trips");
+
 
 // GLOBAL VARIABLES
 let travelersData;
@@ -36,7 +36,7 @@ const getData = () => {
         destinationsData = value[2].destinations;
         tripsRepo = new Trip(tripsData)
         destinationsRepo = new Destination(destinationsData)
-        traveler = new Traveler(travelersData[10]);
+        traveler = new Traveler(travelersData[2]);
         updateNav();
     });
   }
@@ -45,10 +45,18 @@ const getData = () => {
     userWelcome.innerHTML = `Welcome ${traveler.getName()}`;
     yearlySpent.innerHTML =  `This years total spending: $${traveler.getYearlyTotalSpent(tripsData, destinationsData)}`;
     generatePastTrips();
-    // generateUpcomingTrips();
-    // generatePendingTrips();
+    generateUpcomingTrips();
+    generatePendingTrips();
   }
 
   const generatePastTrips = () => {
     pastTrips.innerHTML += `${traveler.getPastTrips(tripsData, destinationsData)}`
+  }
+
+  const generateUpcomingTrips = () => {
+    upcomingTrips.innerHTML += `${traveler.getUpcomingTrips(tripsData, destinationsData)}`
+  }
+
+  const generatePendingTrips = () => {
+    pendingTrips.innerHTML += `${traveler.getPendingTrips(tripsData, destinationsData)}`
   }
