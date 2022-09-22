@@ -12,7 +12,7 @@ let yearlySpent = document.querySelector(".traveler-yearly-spent");
 let pastTrips = document.querySelector(".past-trips");
 let upcomingTrips = document.querySelector(".upcoming-trips");
 let pendingTrips = document.querySelector(".pending-trips");
-
+let mainSection = document.querySelector(".main-display")
 
 // GLOBAL VARIABLES
 let travelersData;
@@ -21,13 +21,6 @@ let tripsRepo;
 let destinationsData;
 let destinationsRepo;
 let traveler;
-
-// EVENT LISTENERS
-window.onload = (event) => {
-    getData();
-  };
-
-// FUNCTIONS
 const getData = () => {
     Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
     .then((value) => {
@@ -37,26 +30,51 @@ const getData = () => {
         tripsRepo = new Trip(tripsData)
         destinationsRepo = new Destination(destinationsData)
         traveler = new Traveler(travelersData[2]);
-        updateNav();
-    });
-  }
+        updateMainView()
+      });
+    }
+
+
+// EVENT LISTENERS
+window.addEventListener('load', getData);
+mainSection.addEventListener('click', handleButtons);
+
+// FUNCTIONS
+function handleButtons(event) {
+    switch (event.target.className) {
+      case "check-rate-btn":
+        testFunction(event);
+        break;
+      default:
+        break;
+    }
+  };
   
-  const updateNav = () => {
+  const updateMainView = () => {
     userWelcome.innerHTML = `Welcome ${traveler.getName()}`;
     yearlySpent.innerHTML =  `This years total spending: $${traveler.getYearlyTotalSpent(tripsData, destinationsData)}`;
-    generatePastTrips();
-    generateUpcomingTrips();
-    generatePendingTrips();
+    generateTrips();
   }
-
-  const generatePastTrips = () => {
+  
+  const generateTrips = () => {
     pastTrips.innerHTML += `${traveler.getPastTrips(tripsData, destinationsData)}`
-  }
-
-  const generateUpcomingTrips = () => {
     upcomingTrips.innerHTML += `${traveler.getUpcomingTrips(tripsData, destinationsData)}`
+    pendingTrips.innerHTML += `${traveler.getPendingTrips(tripsData, destinationsData)}`
+    showDestinationInputs()
   }
 
-  const generatePendingTrips = () => {
-    pendingTrips.innerHTML += `${traveler.getPendingTrips(tripsData, destinationsData)}`
+  const showDestinationInputs = () => {
+    const citySelection = document.querySelector(".select-city")
+    let destinationOptions = destinationsData.map(option => {
+      return `<option> ${option.destination} </option>`
+    })
+    citySelection.innerHTML = `
+    <label for="city-slection">Select Trip Destination:</label>
+    <select id="select1" name="trip-destination-selection" class="trip-location-selection" required>
+    ${destinationOptions}
+    </select>`
+  }
+
+  const testFunction = () => {
+    console.log('test')
   }

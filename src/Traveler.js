@@ -56,7 +56,7 @@ class Traveler {
     let allDestinations = this.getTravelerDestinations(tripsData, destinationsData);
     let tripsLodgingCost = thisYearsTrips.reduce((acc, trip) => {
       let getInfo = allDestinations.find(destination => destination.id === trip.destinationID);
-      let dollars = getInfo.estimatedFlightCostPerPerson * trip.travelers * 2;
+      let dollars = getInfo.estimatedFlightCostPerPerson * trip.travelers;
       acc += dollars;
       return acc;
     }, 0);
