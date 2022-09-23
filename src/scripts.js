@@ -4,7 +4,7 @@ import './css/styles.css';
 import { fetchData } from "./apiCalls";
 import Traveler from './Traveler';
 import Trip from './Trip';
-import Destination from './Destination';
+// import Destination from './Destination';
 
 // QUERYSELECTORS
 let userWelcome = document.querySelector(".welcome-traveler");
@@ -17,23 +17,23 @@ let mainSection = document.querySelector(".main-display")
 // GLOBAL VARIABLES
 let travelersData;
 let tripsData;
-let tripsRepo;
 let destinationsData;
-let destinationsRepo;
+let trips;
 let traveler;
+let currentDate;
 const getData = () => {
     Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
     .then((value) => {
         travelersData = value[0].travelers;
         tripsData = value[1].trips;
         destinationsData = value[2].destinations;
-        tripsRepo = new Trip(tripsData)
-        destinationsRepo = new Destination(destinationsData)
+        trips = new Trip(tripsData, destinationsData)
         traveler = new Traveler(travelersData[2]);
+        currentDate = new Date().toJSON().slice(0, 10);
+        console.log(currentDate)
         updateMainView()
       });
     }
-
 
 // EVENT LISTENERS
 window.addEventListener('load', getData);
@@ -52,14 +52,14 @@ function handleButtons(event) {
   
   const updateMainView = () => {
     userWelcome.innerHTML = `Welcome ${traveler.getName()}`;
-    yearlySpent.innerHTML =  `This years total spending: $${traveler.getYearlyTotalSpent(tripsData, destinationsData)}`;
+    yearlySpent.innerHTML =  `This years total spending: $${trips.getYearlyTotalSpent(traveler.id, currentDate)}`;
     generateTrips();
   }
   
   const generateTrips = () => {
-    pastTrips.innerHTML += `${traveler.getPastTrips(tripsData, destinationsData)}`
-    upcomingTrips.innerHTML += `${traveler.getUpcomingTrips(tripsData, destinationsData)}`
-    pendingTrips.innerHTML += `${traveler.getPendingTrips(tripsData, destinationsData)}`
+    pastTrips.innerHTML += `${trips.getPastTrips(traveler.id, currentDate)}`
+    upcomingTrips.innerHTML += `${trips.getUpcomingTrips(traveler.id, currentDate)}`
+    pendingTrips.innerHTML += `${trips.getPendingTrips(traveler.id, currentDate)}`
     showDestinationInputs()
   }
 
