@@ -8,9 +8,9 @@ describe("Traveler", () => {
   let traveler3;
 
   beforeEach(() => {
-    traveler1 = new Traveler({'id': 1, 'name': 'Colby Pearce', 'travelerType': 'relaxer'});
-    traveler2 = new Traveler({'id': 2, 'name': 'Natalie Pearce','travelerType': 'foodie'});
-    traveler3 = new Traveler({'id': 3, 'name': 'Crosby Pearce', 'travelerType': 'thrill-seeker'});
+    traveler1 = new Traveler(travelersData[0]);
+    traveler2 = new Traveler(travelersData[1]);
+    traveler3 = new Traveler(travelersData[2]);
   });
 
   it("Should be a function", () => {
@@ -29,62 +29,14 @@ describe("Traveler", () => {
   });
 
   it("should be able to find a travelers name by id number", () => {
-    expect(traveler1.name).to.equal('Colby Pearce');
-    expect(traveler2.name).to.equal('Natalie Pearce');
+    expect(traveler1.getName()).to.equal('Colby');
+    expect(traveler2.getName()).to.equal('Natalie');
   });
 
   it("should be able to determine a Traveler type", () => {
     expect(traveler1.travelerType).to.equal('relaxer');
     expect(traveler2.travelerType).to.equal('foodie');
   });
+  
 
-  it('Should be able to find all of a users trips', () => {
-    expect(traveler1.getTravelerTrips(tripsData)).to.deep.equal([tripsData[0], tripsData[1], tripsData[2]])
-    expect(traveler2.getTravelerTrips(tripsData)).to.deep.equal([tripsData[3], tripsData[4], tripsData[5]])
-  });
-
-  it('Should be able to find all of a users destinations', () => {
-    expect(traveler1.getTravelerDestinations(tripsData, destinationsData)).to.deep.equal([destinationsData[0], destinationsData[2], destinationsData[1]])
-  });
-
-  it('Should be able to find the year', () => {
-    expect(traveler1.getYear(tripsData)).to.equal('2022')
-  });
-
-  it('Should be able to find a users lodging costs for all trips this year', () => {
-    expect(traveler1.getLodgingCosts(tripsData, destinationsData)).to.equal(815)
-    expect(traveler2.getLodgingCosts(tripsData, destinationsData)).to.equal(990)
-  });
-
-  it('Should be able to find a users flight costs for all trips this year', () => {
-    expect(traveler1.getFlightCosts(tripsData, destinationsData)).to.equal(4960)
-    expect(traveler2.getFlightCosts(tripsData, destinationsData)).to.equal(9560)
-  });
-
-  it('Should be able to find a users total spent on trips', () => {
-    expect(traveler1.getYearlyTotalSpent(tripsData, destinationsData)).to.equal('6352.50')
-    expect(traveler2.getYearlyTotalSpent(tripsData, destinationsData)).to.equal('11605.00')
-  });
-
-  it('Should be able to find a users past trips', () => {
-    expect(traveler1.getPastTrips(tripsData, destinationsData)).to.deep.equal([
-      '</br> 2021/12/01:  Tokyo, Japan',
-      '</br> 2022/05/04:  Jakarta, Indonesia'
-    ])
-    expect(traveler2.getPastTrips(tripsData, destinationsData)).to.deep.equal([
-      '</br> 2022/05/04:  Jakarta, Indonesia',
-      '</br> 2021/12/10:  Cartagena, Colombia',
-      '</br> 2022/06/01:  Tokyo, Japan'
-    ])
-  });
-
-  it('Should be able to find a users upcoming trips', () => {
-    expect(traveler1.getUpcomingTrips(tripsData, destinationsData)).to.deep.equal([ '</br> 2022/10/10:  Cartagena, Colombia' ])
-    expect(traveler2.getUpcomingTrips(tripsData, destinationsData)).to.deep.equal('No upcoming trips')
-  });
-
-  it('Should be able to find a users pending trips', () => {
-    expect(traveler1.getPendingTrips(tripsData, destinationsData)).to.deep.equal(['</br> 2021/12/01:  Tokyo, Japan, Status : pending' ])
-    expect(traveler2.getPendingTrips(tripsData, destinationsData)).to.deep.equal('No pending trips')
-  });
 });

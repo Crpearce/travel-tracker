@@ -1,12 +1,20 @@
-class Destination {
-    constructor(destinationData) {
-        this.id = destinationData.id;
-        this.destination = destinationData.destination;
-        this.estimatedLodgingCostPerDay = destinationData.estimatedLodgingCostPerDay;
-        this.estimatedFlightCostPerPerson = destinationData.estimatedFlightCostPerPerson;
-        this.image = destinationData.image;
-        this.alt = destinationData.alt;
-    }
-}
+// class Destination {
+//   constructor(destinationsData, tripsData) {
+//     this.destinationsData = destinationsData;
+//     this.tripsData 
+//   }
+//   getTravelerDestinations = (id , trips) => {
+//     let allTrips = trips.getTravelerTrips(tripsData);
+//     let allDestinations = allTrips.reduce((acc, trip) => {
+//       destinationsData.forEach((destination) => {
+//         if (destination.id === trip.destinationID) {
+//           acc.push(destination);
+//         }
+//       });
+//       return acc;
+//     }, []);
+//     return allDestinations;
+//   };
+// }
 
-export default Destination
+// export default Destination;
