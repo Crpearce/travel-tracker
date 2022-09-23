@@ -26,6 +26,9 @@
         <p class="past-trips" id="pastTrips"></p>
       </div>
     </section>
+    <section class="potential-trip-wrapper">
+      <p class="potential-trip-display"></p>
+    </section>
     <section class="booking-view" id="bookingView">
       <section class="trip-calendar-section" id="tripCalendarSection">
         <label for="trip-calendar"> Start date: </label>
@@ -38,11 +41,65 @@
         <label class="trip-duration" aria-label="enter trip length" for="tripLength">Trip Duration:</label>
         <input type="number" id="tripLength" name="quantity" min="1" max="20">
       </section>
-      <section class="select-city" id="selectCity"></section>
+      <section class="select-city" id="selectCity">
+        <label for="city-slection">Select Trip Destination:</label>
+        <select id="select1" name="trip-destination-selection" class="trip-location-selection" required>
+          <option class="lima" value="Lima, Peru">Lima, Peru</option>
+          <option class="stockholm" value="Stockholm, Sweden">Stockholm, Sweden</option>
+          <option class="sydney" value="Sydney, Austrailia">Sydney, Austrailia</option>
+          <option class="cartagena" value="Cartagena, Colombia">Cartagena, Colombia</option>
+          <option class="madrid" value="Madrid, Spain">Madrid, Spain</option>
+          <option class="jakarta" value="Jakarta, Indonesia">Jakarta, Indonesia</option>
+          <option class="pairs" value="Paris, France">Paris, France</option>
+          <option class="tokyo" value="Tokyo, Japan">Tokyo, Japan</option>
+          <option class="amsterdam" value="Amsterdam, Netherlands">Amsterdam, Netherlands</option>
+          <option class="toronto" value="Toronto, Canada">Toronto, Canada</option>
+          <option class="mikonos" value="Mikonos, Greece">Minkonos, Greece</option>
+          <option class="wellington" value="Wellington, New Zealand">Wellington, New Zealand</option>
+          <option class="petersberg" value="St. Petersburg, Russia">St. Petersburg, Russia</option>
+          <option class="marrakesh" value="Marrakesh, Morocco">Marrakesh, Morocco</option>
+          <option class="manila" value="Manila, Philippines">Manila, Philippines</option>
+          <option class="bangkok" value="Bangkok, Thailand">Bangkok, Thailand</option>
+          <option class="jaipur" value="Jaipur, India">Jaipur, India</option>
+          <option class="capetown" value="Cape Town, South Africa">Cape Town, South Africa</option>
+          <option class="quito" value="Quito, Ecuador">Quito, Ecuador</option>
+          <option class="miami" value="Miami, Florida">Miami, Florida</option>
+          <option class="tulum" value="Tulum, Mexico">Tulum, Mexico</option>
+          <option class="rome" value="Rome, Italy">Rome, Italy</option>
+          <option class="copenhagen" value="Copenhagen, Denmark">Copenhagen, Denmark</option>
+          <option class="vilnius" value="Vilnius, Lithuania">ilnius, Lithuania</option>
+          <option class="newyork" value="New York, New York">New York, New York</option>
+          <option class="london" value="London, England">London, England</option>
+          <option class="sanfran" value="San Francisco, California">San Francisco, California</option>
+          <option class="sanjuan" value="San Juan, Puerto Rico">San Juan, Puerto Rico</option>
+          <option class="willemstad" value="Willemstad, Curaçao">Willemstad, Curaçao</option>
+          <option class="antananarivo" value="Antananarivo, Madagascar">Antananarivo, Madagascar</option>
+          <option class="colombo" value="Colombo, Sri Lanka">Colombo, Sri Lanka</option>
+          <option class="kathmandu" value="Kathmandu, Nepal">Kathmandu, Nepal</option>
+          <option class="brussels" value="Brussels, Belgium">Brussels, Belgium</option>
+          <option class="seoul" value="Seoul, South Korea">Seoul, South Korea</option>
+          <option class="anchorage" value="Anchorage, Alaska">Anchorage, Alaska</option>
+          <option class="reykjavík" value="Reykjavík, Iceland">Reykjavík, Iceland</option>
+          <option class="frankfurk" value="Frankfurt, Germany">Frankfurt, Germany</option>
+          <option class="helsinki" value="Helsinki, Finland">Helsinki, Finland</option>
+          <option class="porto" value="Porto, Portugal">Porto, Portugal</option>
+          <option class="isla" value="La Isla Tortuga, Costa Rica">La Isla Tortuga, Costa Rica</option>
+          <option class="montega" value="Montego Bay, Jamaica">Montego Bay, Jamaica</option>
+          <option class="domingo" value="Santo Domingo, Dominican Republic">Santo Domingo, Dominican Republic</option>
+          <option class="nassau" value="Nassau, The Bahamas">Nassau, The Bahamas</option>
+          <option class="caulker" value="Caye Caulker, Belize">Caye Caulker, Belize</option>
+          <option class="calgary" value="Calgary, Canada">Calgary, Canada</option>
+          <option class="victoria" value="Victoria, Seychelles">Victoria, Seychelles</option>
+          <option class="zurich" value="Zürich, Switzerland">Zürich, Switzerland</option>
+          <option class="salaam" value="Dar es Salaam, Tanzania">Dar es Salaam, Tanzania</option>
+          <option class="castries" value="Castries, St Lucia">Castries, St Lucia</option>
+          <option class="hobart" value="Hobart, Tasmania">Hobart, Tasmania</option>
+        </select>
+      </section>
       </div class="trip-form-btns" id="tripFormBtns">
         <button aria-label="check for trip rates button" class="check-rate-btn" id="checkRateButton"> Check Trip Rate </button>
         <button aria-label="reset trip selections" class="reset-trip-info-btn" id="resetTripInfoButton">Reset Trip Info</button>
-        <button aria-label="book trip" class="book-trip-btn hidden" id="bookTripButton">Book Trip</button>
+        <!-- <button aria-label="book trip" class="book-trip-btn" id="bookTripButton">Book Trip</button> -->
       </div>
     </section>
   </main>

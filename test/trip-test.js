@@ -47,13 +47,13 @@ describe("Trip", () => {
   });
 
   it("should be able to determine the last years lodging costs for a user", () => {
-    expect(trips.getLodgingCosts(1, "2022-09-23")).to.deep.equal(815);
-    expect(trips.getLodgingCosts(2, "2022-09-23")).to.deep.equal(990);
+    expect(trips.getCosts(1, "2022-09-23", 'estimatedLodgingCostPerDay', 'duration')).to.deep.equal(815);
+    expect(trips.getCosts(2, "2022-09-23",'estimatedLodgingCostPerDay', 'duration')).to.deep.equal(990);
   });
 
   it("should be able to determine the last years flight costs for a user", () => {
-    expect(trips.getFlightCosts(1, "2022-09-23")).to.deep.equal(2480);
-    expect(trips.getFlightCosts(2, "2022-09-23")).to.deep.equal(4780);
+    expect(trips.getCosts(1, "2022-09-23", 'estimatedFlightCostPerPerson', 'travelers')).to.deep.equal(2480);
+    expect(trips.getCosts(2, "2022-09-23", 'estimatedFlightCostPerPerson', 'travelers')).to.deep.equal(4780);
   });
 
   it("should be able to determine the total spent, with travel fees, for the last year", () => {
@@ -84,5 +84,26 @@ describe("Trip", () => {
   it("should be able to determine travelers pending trips", () => {
     expect(trips.getPendingTrips(1)).to.deep.equal(["</br> 2021/12/01:  Tokyo, Japan, Status : pending"]);
     expect(trips.getPendingTrips(2)).to.deep.equal('No pending trips');
+  });
+
+  it("should be able to determine lodging details for a potential trip", () => {
+    expect(trips.getEstimatedLodging(4, 'Tokyo, Japan')).to.deep.equal(500);
+  });
+
+  it("should be able to determine flight details for a potential trip", () => {
+    expect(trips.getEstimatedFlights(5, 'Tokyo, Japan')).to.deep.equal(5000);
+  });
+
+  it("should be able to get an image for a potential destination", () => {
+    expect(trips.getTripPhoto('Tokyo, Japan')).to.deep.equal(
+      'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1971&q=80');
+  });
+
+  it("should be able to get an image for a potential destination", () => {
+    expect(trips.getTripName('Tokyo, Japan')).to.deep.equal('Tokyo, Japan');
+  });
+
+  it("should be able to get an estimated total cost for a trip", () => {
+    expect(trips.getEstimatedTotal(2, 4, 'Tokyo, Japan')).to.deep.equal(2500);
   });
 });

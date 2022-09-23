@@ -33,7 +33,6 @@ body {
 
 .app-name{
   padding-top: 1.2em;
-  padding-left: 1em;
   font-size: 40px;
   color: rgb(255, 193, 22);
 }
@@ -121,7 +120,24 @@ body {
   height: 22em;
   width: 30em;
   margin-left: 23%;
-  margin-top: 10%;
+  margin-top: 13.5%;
+  opacity: .8;
+  background-color: lightgrey;
+}
+
+.potential-trip-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+.potential-trip-display {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  height: 35em;
+  width: 30em;
+  margin-left: 67%;
+  margin-top: 20%;
   opacity: .8;
   background-color: lightgrey;
 }
