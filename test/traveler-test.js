@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { travelersData, tripsData, destinationsData } from "../src/sample-data";
+import { travelersData } from "../src/sample-data";
 import Traveler from "../src/Traveler";
 
 describe("Traveler", () => {

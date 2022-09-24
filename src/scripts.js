@@ -1,10 +1,8 @@
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/nav.png'
 import './css/styles.css';
 import { fetchData } from "./apiCalls";
 import Traveler from './Traveler';
 import Trip from './Trip';
-// import Destination from './Destination';
 
 // QUERYSELECTORS
 let userWelcome = document.querySelector(".welcome-traveler");
@@ -13,6 +11,13 @@ let pastTrips = document.querySelector(".past-trips");
 let upcomingTrips = document.querySelector(".upcoming-trips");
 let pendingTrips = document.querySelector(".pending-trips");
 let mainSection = document.querySelector(".main-display")
+let bookingView = document.querySelector(".booking-view")
+let startDateInput = document.querySelector(".start-date-input")
+let numberTravelers = document.querySelector("#numberTravelers")
+let tripDuration = document.querySelector("#tripLength")
+let potentialTrip = document.querySelector(".potential-trip-display")
+let citySelection = document.querySelector(".destination-entry-selection")
+let postError = document.querySelector(".post-error-message")
 
 // GLOBAL VARIABLES
 let travelersData;
@@ -28,10 +33,10 @@ const getData = () => {
         tripsData = value[1].trips;
         destinationsData = value[2].destinations;
         trips = new Trip(tripsData, destinationsData)
-        traveler = new Traveler(travelersData[2]);
+        traveler = new Traveler(travelersData[38]);
         currentDate = new Date().toJSON().slice(0, 10);
-        console.log(currentDate)
         updateMainView()
+        showDestinationInputs()
       });
     }
 
@@ -39,12 +44,27 @@ const getData = () => {
 window.addEventListener('load', getData);
 mainSection.addEventListener('click', handleButtons);
 
+
 // FUNCTIONS
 function handleButtons(event) {
     switch (event.target.className) {
       case "check-rate-btn":
-        testFunction(event);
+        checkNewTripRate(event);
+        hide(bookingView)
+        show(potentialTrip)
         break;
+      case "book-trip-btn":
+        bookTrip(event);
+        resetPage(event);
+        show(bookingView)
+        hide(potentialTrip)
+        break;
+      case "home-btn":
+        resetPage(event);
+        break;  
+      case "reset-trip-info-btn":
+        resetPage(event);
+        break;  
       default:
         break;
     }
@@ -57,24 +77,83 @@ function handleButtons(event) {
   }
   
   const generateTrips = () => {
+    pastTrips.innerHTML = ''
+    upcomingTrips.innerHTML = ''
+    pendingTrips.innerHTML = ''
     pastTrips.innerHTML += `${trips.getPastTrips(traveler.id, currentDate)}`
     upcomingTrips.innerHTML += `${trips.getUpcomingTrips(traveler.id, currentDate)}`
     pendingTrips.innerHTML += `${trips.getPendingTrips(traveler.id, currentDate)}`
-    showDestinationInputs()
   }
 
   const showDestinationInputs = () => {
-    const citySelection = document.querySelector(".select-city")
-    let destinationOptions = destinationsData.map(option => {
-      return `<option> ${option.destination} </option>`
-    })
+    let destinationOptions = destinationsData.map(option => `<option> ${option.destination} </option>`)
     citySelection.innerHTML = `
-    <label for="city-slection">Select Trip Destination:</label>
-    <select id="select1" name="trip-destination-selection" class="trip-location-selection" required>
+    <label for="destination-selction">Select Trip Destination:</label>
+    <select id="select1" name="destination-selection" class="destination-entry-selection" required>
     ${destinationOptions}
     </select>`
   }
 
-  const testFunction = () => {
-    console.log('test')
+  const checkNewTripRate = () => {
+    potentialTrip.innerHTML =  `
+    <p>${trips.getTripName(citySelection.value)}</p>
+    <p>Estimated lodging: ${trips.getEstimatedLodging(tripDuration.value, citySelection.value)}</p>
+    <p>Estimated flights: ${trips.getEstimatedFlights(numberTravelers.value, citySelection.value)}</p>
+    <p>Estimated Total: ${trips.getEstimatedTotal(numberTravelers.value, tripDuration.value, citySelection.value)}</p>
+    <img src="${trips.getTripPhoto(citySelection.value)}" class="potential-destination-photo">
+    <button aria-label="book trip" class="book-trip-btn" id="bookTripButton">Book Trip</button>
+    <button aria-label="home button" class="home-btn" id="homeButton">Home</button>
+    `
   }
+
+  const bookTrip = (event) => {
+    let tripID = tripsData.sort((a,b) => b.id - a.id)[0].id + 1;
+    let destID = destinationsData.find(dest => dest.destination === citySelection.value).id;
+    let changeDate = startDateInput.value.split("-").join("/");
+    let travelersAmount = Number(numberTravelers.value);
+    let duration = Number(tripDuration.value);
+    // if(citySelection.value === '' || startDateInput.value === '' || numberTravelers.value === '' || tripDuration.value === '') {
+    //   return 
+    // }
+      fetch("http://localhost:3001/api/v1/trips", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: tripID,
+            userID: traveler.id,
+            destinationID: destID,
+            travelers: travelersAmount,
+            date: changeDate,
+            duration: duration,
+            status: 'pending',
+            suggestedActivities: []
+          }),
+      })
+      .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "There was an error adding your Trip, please retry later"
+            );
+          } else {
+            return response.json();
+          }
+        })
+        .then(() => getData())
+        .catch((err) => {
+          postError.innerText = 'Error updating data, please retry later'
+        });
+  }
+
+  const resetPage = () => {
+    postError.innerHTML = ''
+    citySelection.value = ''
+    startDateInput.value = ''
+    numberTravelers.value = ''
+    tripDuration.value = ''
+    show(bookingView);
+    hide(potentialTrip);
+  }
+
+const show = (event) => event.classList.remove("hidden");
+    
+const hide = (event) => event.classList.add("hidden");
