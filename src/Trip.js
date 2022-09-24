@@ -4,7 +4,8 @@ class Trip {
     this.destinationsData = destinationsData;
   }
 
-  getTravelerTrips = (id) => this.tripsData.filter((trip) => trip.userID === id);
+  getTravelerTrips = (id) =>
+    this.tripsData.filter((trip) => trip.userID === id);
 
   getTravelerDestinations = (id) => {
     let allTrips = this.getTravelerTrips(id);
@@ -34,8 +35,8 @@ class Trip {
   };
 
   getYearlyTotalSpent = (id, currentDate) => {
-    let lodging = this.getCosts(id, currentDate, 'estimatedLodgingCostPerDay', 'duration') * 1.1;
-    let flights = this.getCosts(id, currentDate, 'estimatedFlightCostPerPerson', 'travelers' ) * 1.1;
+    let lodging = this.getCosts(id, currentDate, "estimatedLodgingCostPerDay", "duration") * 1.1;
+    let flights = this.getCosts(id, currentDate,"estimatedFlightCostPerPerson","travelers") * 1.1;
     return (lodging + flights).toFixed(2);
   };
 
@@ -45,14 +46,13 @@ class Trip {
     let allDestinations = this.getTravelerDestinations(id);
     let getDates = allTrips.reduce((acc, trip) => {
       allDestinations.forEach((destination) => {
-        if (trip.date.split("/").join("") < year.split("-").join("") &&
-          destination.id === trip.destinationID) {
+        if (trip.date.split("/").join("") < year.split("-").join("") && destination.id === trip.destinationID) {
           acc.push(`</br> ${trip.date}:  ${destination.destination}`);
         }
       });
       return acc;
     }, []);
-    return getDates.length < 1 ?  `No past trips` : getDates;
+    return getDates.length < 1 ? `No past trips` : getDates;
   };
 
   getUpcomingTrips = (id, currentDate) => {
@@ -61,8 +61,7 @@ class Trip {
     let allDestinations = this.getTravelerDestinations(id);
     let getDates = allTrips.reduce((acc, trip) => {
       allDestinations.forEach((destination) => {
-        if (trip.date.split("/").join("") >= year.split("-").join("") &&
-          destination.id === trip.destinationID) {
+        if (trip.date.split("/").join("") >= year.split("-").join("") && destination.id === trip.destinationID) {
           acc.push(`</br> ${trip.date}:  ${destination.destination}`);
         }
       });
@@ -71,12 +70,12 @@ class Trip {
     return getDates.length < 1 ? `No upcoming trips` : getDates;
   };
 
-    getPendingTrips = (id) => {
+  getPendingTrips = (id) => {
     let allTrips = this.getTravelerTrips(id);
     let allDestinations = this.getTravelerDestinations(id);
     let getDates = allTrips.reduce((acc, trip) => {
       allDestinations.forEach((destination) => {
-        if (trip.status === 'pending' && destination.id === trip.destinationID) {
+        if (trip.status === "pending" && destination.id === trip.destinationID) {
           acc.push(`</br> ${trip.date}:  ${destination.destination}, Status : ${trip.status}`);
         }
       });
@@ -86,30 +85,24 @@ class Trip {
   };
 
   getEstimatedLodging = (duration, destination) => {
-    let findSpot = this.destinationsData.find(dest => dest.destination === destination)
-    return findSpot.estimatedLodgingCostPerDay * duration
-    // return `<img src="${findSpot.image}" class="room-photo"></img>`
-  }
-  
+    let findSpot = this.destinationsData.find((dest) => dest.destination === destination);
+    return findSpot.estimatedLodgingCostPerDay * duration;
+  };
+
   getEstimatedFlights = (numberTravelers, destination) => {
-    let findSpot = this.destinationsData.find(dest => dest.destination === destination)
-    return findSpot.estimatedFlightCostPerPerson * numberTravelers
-  }
+    let findSpot = this.destinationsData.find((dest) => dest.destination === destination);
+    return findSpot.estimatedFlightCostPerPerson * numberTravelers;
+  };
 
-getEstimatedTotal = (numberTravelers, duration, destination) => {
-  let findSpot = this.destinationsData.find(dest => dest.destination === destination)
-  return ((findSpot.estimatedFlightCostPerPerson * numberTravelers) + (findSpot.estimatedLodgingCostPerDay * duration))
-}
+  getEstimatedTotal = (numberTravelers, duration, destination) => {
+    let findSpot = this.destinationsData.find((dest) => dest.destination === destination);
+    return ((findSpot.estimatedFlightCostPerPerson * numberTravelers) + (findSpot.estimatedLodgingCostPerDay * duration));
+  };
 
-  getTripPhoto = (destination) => {
-    let findSpot = this.destinationsData.find(dest => dest.destination === destination)
-    return findSpot.image
-  }
+  getTripPhoto = (destination) => this.destinationsData.find((dest) => dest.destination === destination).image
 
-  getTripName = (destination) => {
-    let findSpot = this.destinationsData.find(dest => dest.destination === destination)
-    return findSpot.destination
-};
+  getTripName = (destination) => this.destinationsData.find((dest) => dest.destination === destination).destination
+
 }
 
 export default Trip;

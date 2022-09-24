@@ -33,6 +33,7 @@ body {
 
 .app-name{
   padding-top: 1.2em;
+  margin-left: 2em;
   font-size: 40px;
   color: rgb(255, 193, 22);
 }
@@ -134,9 +135,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content:center;
-  height: 35em;
+  height: 40em;
   width: 30em;
-  margin-left: 67%;
+  margin-left: 100%;
   margin-top: 20%;
   opacity: .8;
   background-color: lightgrey;
@@ -183,6 +184,12 @@ body {
 }
 
 .book-trip-btn {
+  margin-top: .5em;
+  margin-left: 13em;
+  width: 10em;
+}
+
+.home-btn {
   margin-top: .5em;
   margin-left: 13em;
   width: 10em;
