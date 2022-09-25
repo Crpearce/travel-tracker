@@ -137,7 +137,7 @@ body {
   justify-content:center;
   height: 40em;
   width: 30em;
-  margin-left: 100%;
+  margin-left: 85%;
   margin-top: 20%;
   opacity: .8;
   background-color: lightgrey;
@@ -194,8 +194,6 @@ body {
   margin-left: 13em;
   width: 10em;
 }
-
-
 
 .hidden {
   display: none

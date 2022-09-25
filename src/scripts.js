@@ -33,7 +33,7 @@ const getData = () => {
         tripsData = value[1].trips;
         destinationsData = value[2].destinations;
         trips = new Trip(tripsData, destinationsData)
-        traveler = new Traveler(travelersData[38]);
+        traveler = new Traveler(travelersData[21]);
         currentDate = new Date().toJSON().slice(0, 10);
         updateMainView()
         showDestinationInputs()
@@ -112,9 +112,9 @@ function handleButtons(event) {
     let changeDate = startDateInput.value.split("-").join("/");
     let travelersAmount = Number(numberTravelers.value);
     let duration = Number(tripDuration.value);
-    // if(citySelection.value === '' || startDateInput.value === '' || numberTravelers.value === '' || tripDuration.value === '') {
-    //   return 
-    // }
+    if(citySelection.value === '' || startDateInput.value === '' || numberTravelers.value === '' || tripDuration.value === '') {
+      return postError.innerText = ' Please make sure all fields have been selected'
+    } else {
       fetch("http://localhost:3001/api/v1/trips", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -142,6 +142,7 @@ function handleButtons(event) {
         .catch((err) => {
           postError.innerText = 'Error updating data, please retry later'
         });
+      }
   }
 
   const resetPage = () => {
