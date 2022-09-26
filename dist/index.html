@@ -7,14 +7,14 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <nav class="navigation">
+  <nav class="navigation hidden">
     <section class="welcome">
       <h1 class='welcome-traveler'>Welcome</h1>
     </section>
     <section class="app-name"> Travel Tracker </section>
     <section class="traveler-yearly-spent">Total Spent This Year: </section>
   </nav>
-  <main class="main-display" id="mainDisplay">
+  <main class="main-display hidden" id="mainDisplay">
     <section class="trips-view" id="tripsView">
       <div class="upcoming-wrapper" id="upcomingWrapper">All Upcoming Trips
         <p class="upcoming-trips" id="upcomingTrips"></p>
@@ -31,7 +31,7 @@
     </section>
     <section class="booking-view" id="bookingView">
       <section class="trip-calendar-section" id="tripCalendarSection">
-        <label for="trip-calendar"> Start date: </label>
+        <label for="trip-calendar"> Trip start date: </label>
         <input aria-label="Enter a trip start date" class="start-date-input" id="startDateInput" min="2022-09-27" max="2024-01-01" type="date" required>
         <p><span class="post-error-message" id="postErrorMessage"></span></p>
       </section>
@@ -53,7 +53,19 @@
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
   </main>
+  <section class="login" id="loginSection">
+    <form accept-charset="">
+      <div class="login-container">
+        <h2 class="login-greeting">Welcome to Travel Tracker!</h2>
+        <label class="username-text" aria-label="enter username" for="username"><b>Username</b></label>
+        <input class="username" id="username" type="text" placeholder="Username goes here" name="username" required>
+        <label class="password-text" aria-label="enter password" for="psw"><b>Password</b></label>
+        <input class="password" id="password" type="password" placeholder="Password goes here" name="password" required>
+        <button class="login-btn" id="loginBtn">Login</button>
+        <p id="loginError"></p>
+      </div>
+    </form>
+  </section>
   <script src="bundle.js"></script>
-
 </body>
 </html>
