@@ -37,6 +37,4 @@ describe("Traveler", () => {
     expect(traveler1.travelerType).to.equal('relaxer');
     expect(traveler2.travelerType).to.equal('foodie');
   });
-  
-
 });

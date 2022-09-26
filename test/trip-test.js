@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { travelersData, tripsData, destinationsData } from "../src/sample-data";
+import { tripsData, destinationsData } from "../src/sample-data";
 import Trip from "../src/Trip";
 
 describe("Trip", () => {
@@ -24,13 +24,17 @@ describe("Trip", () => {
   it("should have a property to hold all the destinations data", () => {
     expect(trips.destinationsData).to.deep.equal(destinationsData);
   });
+
   it("should get the traveler trips", () => {
     const traveler1 = tripsData.filter((object) => object.userID === 1);
     const traveler2 = tripsData.filter((object) => object.userID === 2);
+    const traveler3 = tripsData.filter((object) => object.userID === 3);
     expect(trips.getTravelerTrips(1)).to.deep.equal(traveler1);
     expect(trips.getTravelerTrips(1).length).to.equal(3);
     expect(trips.getTravelerTrips(2)).to.deep.equal(traveler2);
     expect(trips.getTravelerTrips(2).length).to.equal(3);
+    expect(trips.getTravelerTrips(3)).to.deep.equal(traveler3);
+    expect(trips.getTravelerTrips(3).length).to.equal(0);
   });
 
   it("should be able to determine a travelers destinations", () => {
@@ -44,6 +48,7 @@ describe("Trip", () => {
       destinationsData[0],
       destinationsData[2],
     ]);
+    expect(trips.getTravelerDestinations(3)).to.deep.equal([]);
   });
 
   it("should be able to determine the last years lodging costs for a user", () => {
@@ -57,33 +62,38 @@ describe("Trip", () => {
   });
 
   it("should be able to determine the total spent, with travel fees, for the last year", () => {
-    expect(trips.getYearlyTotalSpent(1, "2022-09-23")).to.deep.equal("3624.50");
-    expect(trips.getYearlyTotalSpent(2, "2022-09-23")).to.deep.equal("6347.00");
+    expect(trips.getYearlyTotalSpent(1, "2022-09-27")).to.deep.equal("3624.50");
+    expect(trips.getYearlyTotalSpent(2, "2022-09-27")).to.deep.equal("6347.00");
+    expect(trips.getYearlyTotalSpent(3, "2022-09-27")).to.deep.equal("0.00");
+
   });
 
   it("should be able to determine past trips a traveler has taken", () => {
-    expect(trips.getPastTrips(1, "2022-09-23")).to.deep.equal([
+    expect(trips.getPastTrips(1, "2022-09-27")).to.deep.equal([
       "</br> 2021/12/01:  Tokyo, Japan",
     ]);
-    expect(trips.getPastTrips(2, "2022-09-23")).to.deep.equal([
+    expect(trips.getPastTrips(2, "2022-09-27")).to.deep.equal([
       "</br> 2021/12/10:  Cartagena, Colombia",
     ]);
+    expect(trips.getPastTrips(3, "2022-09-27")).to.deep.equal('No past trips');
   });
 
   it("should be able to determine travelers upcoming trips", () => {
-    expect(trips.getUpcomingTrips(1, "2022-09-23")).to.deep.equal([
+    expect(trips.getUpcomingTrips(1, "2022-09-27")).to.deep.equal([
       '</br> 2022/10/10:  Cartagena, Colombia',
       '</br> 2022/05/04:  Jakarta, Indonesia'
     ]);
-    expect(trips.getUpcomingTrips(2, "2022-09-23")).to.deep.equal([
+    expect(trips.getUpcomingTrips(2, "2022-09-27")).to.deep.equal([
       '</br> 2022/05/04:  Jakarta, Indonesia',
       '</br> 2022/06/01:  Tokyo, Japan'
     ]);
+    expect(trips.getUpcomingTrips(3, "2022-09-27")).to.deep.equal('No upcoming trips');
   });
 
   it("should be able to determine travelers pending trips", () => {
     expect(trips.getPendingTrips(1)).to.deep.equal(["</br> 2021/12/01:  Tokyo, Japan, Status : pending"]);
     expect(trips.getPendingTrips(2)).to.deep.equal('No pending trips');
+    expect(trips.getPendingTrips(3)).to.deep.equal('No pending trips');
   });
 
   it("should be able to determine lodging details for a potential trip", () => {
@@ -105,5 +115,6 @@ describe("Trip", () => {
 
   it("should be able to get an estimated total cost for a trip", () => {
     expect(trips.getEstimatedTotal(2, 4, 'Tokyo, Japan')).to.deep.equal(2500);
+    expect(trips.getEstimatedTotal(5, 8, 'Jakarta, Indonesia')).to.deep.equal(5010);
   });
 });
