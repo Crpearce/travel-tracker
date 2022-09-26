@@ -120,8 +120,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 20%;
-  width: 40%;
-  margin-left: 20%;
+  width: 200%;
+  margin-right: 20%;
   margin-top: 13.5%;
   opacity: .7;
   background-color: grey;
@@ -130,18 +130,19 @@ body {
 .potential-trip-wrapper{
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
+  width: 100%;
 }
 
 .potential-trip-display {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 83%;
+  height: 90%;
   width: 33%;
-  margin-left: 33%;
+  margin-left: 25%;
   margin-top: 5%;
-  opacity: .8;
+  opacity: .7;
   background-color: gray;
 }
 
@@ -209,7 +210,7 @@ body {
   margin-bottom: 20%;
   width: 45%;
   height: 100%;
-  opacity: .9;
+  opacity: .7;
   align-items: center;
   background-color: gray;
 }

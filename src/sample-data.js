@@ -79,7 +79,7 @@ const travelersData = [
     },
     {
       'id': 20,
-      'userID': 3,
+      'userID': 4,
       'destinationID': 6,
       'travelers': 2,
       'date': '2018/05/04',
@@ -89,7 +89,7 @@ const travelersData = [
     },
     {
       'id': 10,
-      'userID': 3,
+      'userID': 4,
       'destinationID': 4,
       'travelers': 2,
       'date': '2021/12/20',
@@ -99,14 +99,14 @@ const travelersData = [
     },
     {
       'id': 30,
-      'userID': 3,
+      'userID': 4,
       'destinationID': 8,
       'travelers': 3,
       'date': '2022/06/01',
       'duration': 4,
       'status': 'pending',
       'suggestActivities': []
-    },
+    }
   ]
   
   const destinationsData = [
