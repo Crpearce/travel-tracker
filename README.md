@@ -9,6 +9,12 @@ Looking book a trip and get away? Use this repo to help you do just that! This w
 #### Display view and data entry
 ![2022-09-27 08 20 23](https://user-images.githubusercontent.com/101376200/192552296-976265fe-12a6-4ea1-82cc-199fdadf61a3.gif)
 
+#### Book Trip
+![2022-09-27 08 35 34](https://user-images.githubusercontent.com/101376200/192556268-6b40e5c8-084f-4c67-b657-51bda0bcdb2f.gif)
+
+#### Update User View
+
+
 ## Setup
 
 That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
