@@ -2,6 +2,8 @@
 
 ## Abstract
  Looking to book a trip and get away? Use this repo to help you do just that! This was a solo project assigned by the [Turing School of Software and Design](https://turing.edu/) designed to create a travel tracking application which utilized a variety of technologies. These technologies included javaScript, HTML, CSS, Mocha, and Chai. This project marks the half way point in our education related to this program, primarily focusing on vanilla JS to this point. The project was completed in one 4 day push. The project goals were to: user OOP to drive the design of the application and the code, work with an API to send and receive data, solidify the code review process, and create a robust test suite that tests all functionality of the client-side application while ensuring that our app follows best practices for accessability. 
+ 
+feel free to check out the deployed github pages link (https://crpearce.github.io/travel-tracker/)
 
 #### User login
 ![2022-09-27 08 13 48](https://user-images.githubusercontent.com/101376200/192550869-79001ca4-6301-4519-8d74-59df8a661153.gif)
