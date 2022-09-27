@@ -1,7 +1,7 @@
 # Travel Tracker
 
 ## Abstract
-Looking book a trip and get away? Use this repo to help you do just that! This was a solo project assigned by the [Turing School of Software and Design](https://turing.edu/) designed to create a travel tracking application which utilized a variety of technologies. These technologies included javaScript, HTML, CSS, Mocha, and Chai. This project marks the half way point in our education related to this program, primarily focusing on vanilla JS to this point. The project was completed in one 4 day push. The project goals were to: user OOP to drive the design of the application and the code, work with an API to send and receive data, solidify the code review process, and create a robust test suite that tests all functionality of the client-side application while ensuring that our app follows best practices for accessability. 
+ Looking to book a trip and get away? Use this repo to help you do just that! This was a solo project assigned by the [Turing School of Software and Design](https://turing.edu/) designed to create a travel tracking application which utilized a variety of technologies. These technologies included javaScript, HTML, CSS, Mocha, and Chai. This project marks the half way point in our education related to this program, primarily focusing on vanilla JS to this point. The project was completed in one 4 day push. The project goals were to: user OOP to drive the design of the application and the code, work with an API to send and receive data, solidify the code review process, and create a robust test suite that tests all functionality of the client-side application while ensuring that our app follows best practices for accessability. 
 
 #### User login
 ![2022-09-27 08 13 48](https://user-images.githubusercontent.com/101376200/192550869-79001ca4-6301-4519-8d74-59df8a661153.gif)
@@ -17,7 +17,6 @@ Looking book a trip and get away? Use this repo to help you do just that! This w
 
 
 ## Setup
-
 That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
 
 1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
@@ -29,7 +28,6 @@ That's right, _clone_ not fork. You will use this repo multiple times, but you c
 Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
 
 ## Setup pt. 2
-
 After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
 
 Then install the library dependencies. Run:
@@ -47,7 +45,6 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 `password: travel`
 
 ## Testing
-
 There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
 
 ## Project Specs
