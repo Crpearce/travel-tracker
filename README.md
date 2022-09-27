@@ -9,10 +9,11 @@ Looking book a trip and get away? Use this repo to help you do just that! This w
 #### Display view and data entry
 ![2022-09-27 08 20 23](https://user-images.githubusercontent.com/101376200/192552296-976265fe-12a6-4ea1-82cc-199fdadf61a3.gif)
 
-#### Book Trip
-![2022-09-27 08 35 34](https://user-images.githubusercontent.com/101376200/192556268-6b40e5c8-084f-4c67-b657-51bda0bcdb2f.gif)
+#### Book Trip Entry
+![2022-09-27 08 44 40](https://user-images.githubusercontent.com/101376200/192558518-1a05f188-b61d-41a7-b4d3-de99b8f089e3.gif)
 
 #### Update User View
+![2022-09-27 08 46 03](https://user-images.githubusercontent.com/101376200/192558888-dadaf279-25da-4b2b-a9ee-2c1d6939745a.gif)
 
 
 ## Setup
