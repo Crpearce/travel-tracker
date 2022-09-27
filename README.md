@@ -1,7 +1,15 @@
-# Webpack Starter Kit
-TEST
+# Travel Tracker
 
-## Clone This Repo
+## Abstract
+Looking book a trip and get away? Use this repo to help you do just that! This was a solo project assigned by the [Turing School of Software and Design](https://turing.edu/) designed to create a travel tracking application which utilized a variety of technologies. These technologies included javaScript, HTML, CSS, Mocha, and Chai. This project marks the half way point in our education related to this program, primarily focusing on vanilla JS to this point. The project was completed in one 4 day push. The project goals were to: user OOP to drive the design of the application and the code, work with an API to send and receive data, solidify the code review process, and create a robust test suite that tests all functionality of the client-side application while ensuring that our app follows best practices for accessability. 
+
+#### User login
+![2022-09-27 08 13 48](https://user-images.githubusercontent.com/101376200/192550869-79001ca4-6301-4519-8d74-59df8a661153.gif)
+
+#### Display view and data entry
+![2022-09-27 08 20 23](https://user-images.githubusercontent.com/101376200/192552296-976265fe-12a6-4ea1-82cc-199fdadf61a3.gif)
+
+## Setup
 
 That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
 
@@ -13,7 +21,7 @@ That's right, _clone_ not fork. You will use this repo multiple times, but you c
 
 Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
 
-## Setup
+## Setup pt. 2
 
 After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
 
@@ -22,79 +30,40 @@ Then install the library dependencies. Run:
 ```bash
 npm install
 ```
-
 To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
+## Login
+1. To login to the dashboard view for a user, please use the current username and password format.
 
-### JavaScript
+`username: traveler50 (where 50 is the ID of the user, users 1 - 50 should be acccessable)`
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+`password: travel`
 
-**Create all of your feature code files in the `src` directory.**
+## Testing
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+## Project Specs
+The project specs and rubric for Travel Tracker can be found [here](https://frontend.turing.edu/projects/travel-tracker.html)
 
-### HTML
+## Technologies Used
+ <p>
+   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+   <img src="https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white"/>
+   <img src="https://img.shields.io/badge/Chai-A30701?style=for-the-badge&logo=chai&logoColor=white"/>
+   <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"/>
+ </p>
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+ ## Challenges
+- TDD
+- Post Calls
 
-### Images
+## Wins
+- Dynamic functions created to stick to SRP and get rid of unecessary code
+- Accessibility
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+## Future Extensions
+- create another login view for a travel agent ** Your app should now support two different types of users. In addition to having a traveler, you will now add a travel agency. **
 
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
